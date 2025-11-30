@@ -56,3 +56,12 @@ pre {
     opacity: 0;
   }
 }
+
+:root {
+  color-scheme: light;
+}
+
+/* Fond clair global + texte foncé */
+body {
+  @apply bg-slate-50 text-gray-900;
+}
