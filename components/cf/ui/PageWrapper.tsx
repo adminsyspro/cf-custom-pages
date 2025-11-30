@@ -1,5 +1,4 @@
 import { CFLayout } from "@/components/layout/CFLayout";
-import { Providers } from "@/components/providers";
 import { blockPages, challengePages, errorPages } from "@/config/routes";
 import type {
   BlockPageConfig,
@@ -57,6 +56,7 @@ export function PageWrapper({ pageType }: { pageType: PageType }) {
   const router = useRouter();
   const { type } = router.query;
   const { pages, defaultType, component: Component } = pageConfigs[pageType];
+
   const config =
     typeof type === "string" && type in pages
       ? pages[type as keyof typeof pages]
@@ -67,12 +67,10 @@ export function PageWrapper({ pageType }: { pageType: PageType }) {
   }
 
   return (
-    <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-      <CFLayout>
-        {/* biome-ignore lint/suspicious/noExplicitAny: TypeScript Too HARD */}
-        <Component {...(config as any)} />
-      </CFLayout>
-    </Providers>
+    <CFLayout>
+      {/* biome-ignore lint/suspicious/noExplicitAny: TypeScript Too HARD */}
+      <Component {...(config as any)} />
+    </CFLayout>
   );
 }
 
